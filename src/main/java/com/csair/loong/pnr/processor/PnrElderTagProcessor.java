@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 /**
  * Created by cloudpj on 16/8/14.
  */
-public class PnrElderTagProcessor extends Processor<File,File> {
+public class PnrElderTagProcessor implements Processor<File,File> {
     protected static final Logger log = LoggerFactory.getLogger(PnrElderTagProcessor.class);
 //    private String fileName;
     SimpleDateFormat simpleFormat = new SimpleDateFormat("yyyyMMdd");

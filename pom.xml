@@ -1,71 +1,75 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>com.csari.loong</groupId>
-    <artifactId>pnr-process</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.csari.loong</groupId>
+	<artifactId>pnr-process</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
 
 
-    <properties>
-        <java.version>1.8</java.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <org.springframework.version>4.1.6.RELEASE</org.springframework.version>
-    </properties>
+	<properties>
+		<java.version>1.8</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<org.springframework.version>4.1.6.RELEASE</org.springframework.version>
+	</properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.csair.r</groupId>
-            <artifactId>FileProcess</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
+	<dependencies>
+		<dependency>
+			<groupId>com.csair.r</groupId>
+			<artifactId>FileProcess</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
 
-        <dependency>
-            <groupId>com.csair</groupId>
-            <artifactId>loong-commons-cache</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-orm</artifactId>
-            <version>${org.springframework.version}</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>19.0</version>
-        </dependency>
+		<dependency>
+			<groupId>com.csair</groupId>
+			<artifactId>loong-commons-cache</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${org.springframework.version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>19.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.phoenix</groupId>
+			<artifactId>phoenix-core</artifactId>
+			<version>4.6.0-HBase-0.98</version>
+		</dependency>
 
-
-    </dependencies>
-
-
-    <repositories>
-        <repository>
-            <id>central-maven-repo-proxy</id>
-            <name>Java OSS Tech Maven Proxy</name>
-            <url>http://10.92.8.15/nexus/content/groups/public</url>
-        </repository>
-    </repositories>
+	</dependencies>
 
 
-    <build>
-        <testResources>
-            <testResource>
-                <directory>src/test/resources</directory>
-                <filtering>true</filtering>
-            </testResource>
-        </testResources>
-        <plugins>
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                    <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+	<repositories>
+		<repository>
+			<id>central-maven-repo-proxy</id>
+			<name>Java OSS Tech Maven Proxy</name>
+			<url>http://10.92.8.15/nexus/content/groups/public</url>
+		</repository>
+	</repositories>
+
+
+	<build>
+		<testResources>
+			<testResource>
+				<directory>src/test/resources</directory>
+				<filtering>true</filtering>
+			</testResource>
+		</testResources>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>

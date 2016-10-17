@@ -25,13 +25,14 @@ public class FileWriter implements Writer{
         }
 
     }
+    
     public void writer(Object someStr){
 
         if(wr!=null){
             try {
 
-                wr.write(someStr.toString());
-
+                wr.write(someStr.toString()+"\n");
+//                log.info(someStr.toString());
             } catch (IOException e) {
                 log.error("[FileWriter]:写入失败，data=["+someStr+"]");
             }

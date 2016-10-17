@@ -16,7 +16,7 @@ import java.util.zip.ZipInputStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class UnGzProcessor extends Processor<List<File>, String> {
+public class UnGzProcessor implements Processor<List<File>, String> {
 	protected static final Logger log = LoggerFactory.getLogger(UnGzProcessor.class);
 	private static final int buffer = 2048;
 	
@@ -36,8 +36,8 @@ public class UnGzProcessor extends Processor<List<File>, String> {
 		if(destPath==null){
 			destPath = srcFile.getParent();
 		}
-
-	
+	 
+		
 		log.info("开始解压文件" + fileName + "到：" + destPath);
 		
 		try {
@@ -75,7 +75,11 @@ public class UnGzProcessor extends Processor<List<File>, String> {
 		} catch (Exception e) {
 			log.error("文件解压错误！", e);
 		}
-
+		
+//		if(this.processor!=null){
+//			this.processor.doit(fileList);
+//		}
+		
 		return fileList;
 	}
 

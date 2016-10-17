@@ -9,6 +9,7 @@ import java.util.Map;
 
 /**
  * Created by cloudoo on 2016/9/18.
+ * 
  */
 public class PnrSegInfo {
 

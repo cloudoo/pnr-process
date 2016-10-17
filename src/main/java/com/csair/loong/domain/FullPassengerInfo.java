@@ -3,7 +3,10 @@ package com.csair.loong.domain;
 import java.io.Serializable;
 
 /**
+ * 
+ * 针对文档<FULL PNR 数据导入规则v1.2.doc>处理规则
  * Created by cloudoo on 2016/9/18.
+ * 
  */
 public class FullPassengerInfo implements Serializable{
 
@@ -298,6 +301,10 @@ public class FullPassengerInfo implements Serializable{
     }
 
     public String toString(){
-        return pnrRef+","+pnrCrtDt+","+pnrGrpInd+","+paxId+","+paxFulNm +","+paxCnNm+","+vipInd+","+paxAgeCtgCd+","+segId+","+carrCd+","+fltNbr+","+fltNbrSfx+","+dptAirptCd+","+arrvAirptCd+","+dptDtLcl+","+dptDow+","+dptTmLcl+","+arrvDtLcl+","+arrvTmLcl+","+airSegFltTyp+","+subClsCd+","+oprStatCd+","+statId+","+oprStatCd+","+indvlIdTypCd+","+indvlNbr+","+cntryCd+","+indvlBthDay+","+gndCd+","+vicoCard+","+tktType+","+ctcNbr+"\n\r";
+        return pnrRef+","+pnrCrtDt+","+pnrGrpInd+","+paxId+","+paxFulNm +","+paxCnNm+","+vipInd+","+paxAgeCtgCd+","+segId+","+carrCd+","+fltNbr+","+fltNbrSfx+","+dptAirptCd+","+arrvAirptCd+","+dptDtLcl+","+dptDow+","+dptTmLcl+","+arrvDtLcl+","+arrvTmLcl+","+airSegFltTyp+","+subClsCd+","+oprStatCd+","+statId+","+oprStatCd+","+indvlIdTypCd+","+indvlNbr+","+cntryCd+","+indvlBthDay+","+gndCd+","+vicoCard+","+tktType+","+ctcNbr;
+//        create 'full_psg_info','pnr_ref','pnr_crtdt','pnr_grp_ind','pax_id','pax_fulnm','pax_cnnm','vip_ind','pax_age_ctg_cd',
+//        'seg_id','carr_cd','flt_nbr','flt_nbr_sfx','dpt_airpt_cd','arrv_airpt_cd','dpt_dt_lcl','dpt_dow','dpt_tm_lcl','arrv_dt_lcl'
+//        ,'arrv_tm_lcl','air_seg_flt_typ','sub_cls_cd','opr_stat_cd','stat_id','indvl_id_typ_cd','indvl_nbr','cntry_cd','indvl_bth_day'
+//        ,'gnd_cd','vico_card','tkt_type','ctc_nbr'
     }
 }

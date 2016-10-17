@@ -14,7 +14,7 @@ import com.csair.datatrs.common.FieldSegment;
 
 
 
-public class PnrDivProcessor extends Processor<List<File>,String> {
+public class PnrDivProcessor implements Processor<List<File>,String> {
     protected static final Logger log = LoggerFactory.getLogger(PnrDivProcessor.class);
     
 //    private String fileName;

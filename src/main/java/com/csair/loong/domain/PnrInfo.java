@@ -6,6 +6,7 @@ import java.io.Serializable;
  * Created by cloudoo on 2016/9/12.
  */
 public abstract class PnrInfo implements Serializable {
+	public static String FILE_HEADER="PNR FILE ICS";
     public static String PNR_HEAD_TYPE = "001";
     public static String PNR_PSG_INFO_TYPE = "002";
     public static String PNR_PSG_CHGNAME_INFO_TYPE = "003";
@@ -15,7 +16,8 @@ public abstract class PnrInfo implements Serializable {
     public static String PNR_PSG_ID_INFO_TYPE = "010";
     public static String PNR_BIG_CLIENT = "015";
     public static String PNR_CONTRACT_TYPE = "016";
-
+    public static String FILE_ENDER="END PNR FILE";
+    
 
     private String filler1;
     private String filler2;

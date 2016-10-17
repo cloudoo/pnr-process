@@ -10,10 +10,10 @@ import com.csair.loong.service.Writer;
  */
 public class SsimService {
 
-    private FileReader<SsimInfo> fileReader;
+    private FileReader fileReader;
     private Writer writer;
 
-    public void setFileReader(FileReader<SsimInfo> fileReader){
+    public void setFileReader(FileReader fileReader){
         this.fileReader = fileReader;
     }
 

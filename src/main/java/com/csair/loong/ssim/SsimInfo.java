@@ -9,5 +9,5 @@ public class SsimInfo {
     public static String SEASON_RECORD = "2";
     public static String FLIGHT_LEG_RECORD = "3";
     public static String SEG_DATA_RECORD = "4";
-
+    
 }

@@ -3,8 +3,8 @@ package com.csair.loong.service;
 import com.csair.loong.domain.FullPassengerInfo;
 import com.csair.loong.domain.PnrInfo;
 import com.csair.loong.domain.PnrSegInfo;
-import com.csair.loong.pnr.FullPsgInfoBuilder;
-import com.csair.loong.pnr.processor.FullPsgInfoProcessor;
+import com.csair.loong.pnr.processor.FullPsgInfoBuilder;
+import com.csair.loong.pnr.processor.PnrSegInfoBuilder;
 import com.csair.loong.pnr.processor.Processor;
 
 import java.util.List;

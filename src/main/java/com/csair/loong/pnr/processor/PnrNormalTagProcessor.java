@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
  *
  */
 @Deprecated
-public class PnrNormalTagProcessor extends Processor<File,File> {
+public class PnrNormalTagProcessor implements Processor<File,File> {
     protected static final Logger log = LoggerFactory.getLogger(PnrNormalTagProcessor.class);
     static SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 //    private String fileName;

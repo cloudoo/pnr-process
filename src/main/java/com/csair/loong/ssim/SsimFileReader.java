@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by cloudoo on 2016/9/22.
  */
-public class SsimFileReader extends FileReader<SsimInfo>{
+public class SsimFileReader extends FileReader{
 
     private TxtFormaterService<SsimInfo> txtFormaterService;
 

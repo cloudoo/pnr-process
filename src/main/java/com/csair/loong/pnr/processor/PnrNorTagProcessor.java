@@ -14,7 +14,7 @@ import java.util.*;
 import java.util.regex.Pattern;
 
 
-public class PnrNorTagProcessor extends Processor<File,File> {
+public class PnrNorTagProcessor implements Processor<File,File> {
 
     protected static final Logger log = LoggerFactory.getLogger(PnrNorTagProcessor.class);
     static SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
