@@ -28,7 +28,7 @@ public class PnrPsgInfo extends PnrInfo {
 
     public PnrPsgInfo(String[] lines){
 
-        if(lines.length>13){
+        if(lines.length>=13){
             paxId = lines[1];
 //            pnrRef = lines[2];
 //            pnrCrtDt = lines[3];
@@ -36,7 +36,7 @@ public class PnrPsgInfo extends PnrInfo {
                 paxRltvPosn = Integer.parseInt(lines[2]);
             }
             if(StringUtils.isNoneBlank(lines[3])) {
-                txnItmNbrAdd = Integer.parseInt(lines[4]);
+                txnItmNbrAdd = Integer.parseInt(lines[3]);
             }
             if(StringUtils.isNoneBlank(lines[4])) {
                 txnItmNbrCncl = Integer.parseInt(lines[4]);
@@ -44,10 +44,11 @@ public class PnrPsgInfo extends PnrInfo {
             paxMvInd = lines[5];
             paxFulNm = lines[6];
             paxLstNm = lines[7];
-            paxCnNm = lines[8];
-            vipInd = lines[9];
-            paxAgeCtgCd = lines[10];
-            paxSltn = lines[11];
+            paxFstNm = lines[8];
+            paxCnNm = lines[9];
+            vipInd = lines[10];
+            paxAgeCtgCd = lines[11];
+            paxSltn = lines[12];
         }
     }
 

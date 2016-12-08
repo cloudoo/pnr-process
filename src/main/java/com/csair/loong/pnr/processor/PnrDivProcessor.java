@@ -92,7 +92,7 @@ public class PnrDivProcessor implements Processor<List<File>,String> {
                         File resultFile = new File(fileName+"."+type);
                         fileList.add(resultFile);
                         BufferedWriter  temp = new BufferedWriter(new OutputStreamWriter(
-                                new FileOutputStream(resultFile),"GBK"));
+                                new FileOutputStream(resultFile),"UTF-8"));
                         writerMap.put(type,temp);
                         //添加title
                         BufferedWriter writer = writerMap.get(type);
@@ -102,7 +102,9 @@ public class PnrDivProcessor implements Processor<List<File>,String> {
                     writer.write(tempLine+"\n");
                 }
                 index ++;
-                log.info("----process:"+index);
+                if(index%10000==0){
+                    log.info("----process:"+index);
+                }
 
                 //redisClient.push(cacheKey,tempLine);
             }
@@ -154,7 +156,9 @@ public class PnrDivProcessor implements Processor<List<File>,String> {
         titleMap.put("012", "Part_Typ,Sta_Dt,update_dt,Pnr_Ref,Pnr_Crt_Dt,Pnr_Ref_Crt_Dt,Pnr_Spt_Itm_Nbr,Pnr_Ref_sub,Pnr_Crt_Dt_sub,Txn_Itm_Nbr_Add,Filler1,Filler2,Filler3,Filler4,Filler5,Filler6");
         titleMap.put("013", "Part_Typ,Sta_Dt,update_dt,Pnr_Ref,Pnr_Crt_Dt,Pnr_Ref_Crt_Dt,Grp_Nm,Pnr_Stat_Cd,Chg_Seq_Nbr,Grp_Orig_St_Qty,Txn_Itm_Nbr_Sp,Txn_Itm_Nbr_Cncl,Grp_Curr_St_Qty,Grp_St_Sp_Qty,Grp_St_Cncl_Qty,Grp_Curr_Pax_Qty,Filler1,Filler2,Filler3,Filler4,Filler5,Filler6");
         titleMap.put("014", "Part_Typ,Sta_Dt,update_dt,Pnr_Ref,Pnr_Crt_Dt,Pnr_Ref_Crt_Dt,Txn_Id,Bkg_Cty_GDS,Pnr_Ref_opp,Bkg_Offc_Cd,Iata_Nbr,Cty_Cd,Airln_Cd,Usr_Typ,ISO_Cntry_Cd,ISO_Crncy,Dty_Cd,ERSP_Cd,Fst_Dpt_Pnt,Filler1,Filler2,Filler3,Filler4,Filler5,Filler6");
-    }
+   		titleMap.put("015","Part_Typ,Sta_Dt,Updata_Dt,Pnr_Ref,Pnr_Crt_Dt,Pnr_Ref_Crt_Dt,Pax_dat_Id,Rltv_Posn,Txn_Itm_Nbr_Add,Txn_Itm_Nbr_Cncl,Carr_Cd,Opr_Stat_Cd,Pax_Qty,Vico_Card,Tkt_Typ,Filler1,Filler2,Filler3,Filler4,Filler5,Filler6");
+		 titleMap.put("016","Part_Typ,Sta_Dt,Updata_Dt,Pnr_Ref,Pnr_Crt_Dt,Pnr_Ref_Crt_Dt,Pax_dat_Id,Rltv_Posn,Txn_Itm_Nbr_Add,Txn_Itm_Nbr_Cncl,Carr_Cd,Ct_Typ,Ctc_Nbr,Pax_Id,Filler1,Filler2,Filler3,Filler4,Filler5,Filler6");
+	}
     
     
     public static void main(String[] args){
@@ -163,10 +167,10 @@ public class PnrDivProcessor implements Processor<List<File>,String> {
 //        String strDt = test[1].substring(0, 16);
 //        String endDt = test[1].substring(16);
 //        System.out.println(test.length);
-        String fileName = "D:\\03_工作文件\\02_研究院\\01_项目\\05_PNR数据\\CZ_DFP_20151103_1.txt";
+        String fileName = "D:\\03_工作文件\\02_研究院\\01_项目\\05_PNR数据\\02_数据\\2016\\CZ_DFP_20160111_1.txt";
         Processor<List<File>,String> testP = new PnrDivProcessor();
-       List<File> fileList = testP.doit(fileName);
-        
+        List<File> fileList = testP.doit(fileName);
+
     }
 
 }

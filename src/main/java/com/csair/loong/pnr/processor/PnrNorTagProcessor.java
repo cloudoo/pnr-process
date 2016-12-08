@@ -42,7 +42,7 @@ public class PnrNorTagProcessor implements Processor<File,File> {
         log.info("process start");
         try {
             br = new BufferedReader(new InputStreamReader(new FileInputStream(
-                    orgFile), "GBK"));
+                    orgFile), "UTF-8"));
             String line = "";
             int index = 1;
             String tempLine = "";

@@ -55,7 +55,7 @@ public class PnrFullPsgCreator {
     }
 
 
-    public void regPnrInfos( List<PnrInfo> pnrInfoList){
+    public void regPnrInfos(final List<PnrInfo> pnrInfoList){
 
         cachedThreadPool.execute( new Thread() {
             @Override
@@ -74,7 +74,7 @@ public class PnrFullPsgCreator {
 
     }
 
-    public void writePnrInfo(String fileName){
+    public void writePnrInfo(final String fileName){
 
         cachedThreadPool.execute( new Thread()  {
             @Override
