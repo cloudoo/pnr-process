@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.csair.loong</groupId>
 	<artifactId>pnr-process</artifactId>
-	<version>0.0.3.1-SNAPSHOT</version>
+	<version>0.0.3.4-SNAPSHOT</version>
 
 
 	<properties>
@@ -68,6 +68,20 @@
 					<target>${java.version}</target>
 					<encoding>UTF-8</encoding>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.4</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>install</phase>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

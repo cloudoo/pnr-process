@@ -14,7 +14,7 @@ import java.util.List;
  * Created by cloudoo on 2016/9/21.
  */
 public abstract class FileReader implements  Reader{
-    private static final Logger log = LoggerFactory.getLogger(PnrFileReader.class);
+    private static final Logger log = LoggerFactory.getLogger(FileReader.class);
     protected File file;
 
     public FileReader(String fileName) {
@@ -37,7 +37,7 @@ public abstract class FileReader implements  Reader{
 
         try {
 
-            br = new BufferedReader(new InputStreamReader(new FileInputStream(file), "GBK"));
+            br = new BufferedReader(new InputStreamReader(new FileInputStream(file), "GBK"));//默认应该是GBK格式
             wr = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File(file.getAbsolutePath() + ".error")), "UTF-8"));
 
             while ((line = br.readLine()) != null) {
@@ -45,13 +45,12 @@ public abstract class FileReader implements  Reader{
                 try {
                     //处理每行记录
                     process(line);
-
+                    
                 } catch (Exception e) {
-                    e.printStackTrace();
                     log.error("[FileReader]解析异常！" + line + "\n\r" + e.getStackTrace());
                     wr.write("fail," + line + "\b\n");
                 }
-
+                
             }
 
         } catch (FileNotFoundException e) {

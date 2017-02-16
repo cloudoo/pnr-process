@@ -102,8 +102,8 @@ public class PnrDivProcessor implements Processor<List<File>,String> {
                     writer.write(tempLine+"\n");
                 }
                 index ++;
-                if(index%10000==0){
-                    log.info("----process:"+index);
+                if(index%1000000==0){
+                    log.info("----process:"+index+" lines");
                 }
 
                 //redisClient.push(cacheKey,tempLine);
@@ -167,7 +167,7 @@ public class PnrDivProcessor implements Processor<List<File>,String> {
 //        String strDt = test[1].substring(0, 16);
 //        String endDt = test[1].substring(16);
 //        System.out.println(test.length);
-        String fileName = "D:\\03_工作文件\\02_研究院\\01_项目\\05_PNR数据\\02_数据\\2016\\CZ_DFP_20160111_1.txt";
+        String fileName = "D:\\03_工作文件\\02_研究院\\01_项目\\05_PNR数据\\02_数据\\2016\\org\\CZ_DFP_20161206_1.txt";
         Processor<List<File>,String> testP = new PnrDivProcessor();
         List<File> fileList = testP.doit(fileName);
 

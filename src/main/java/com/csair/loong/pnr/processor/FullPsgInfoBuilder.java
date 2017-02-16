@@ -27,15 +27,16 @@ public class FullPsgInfoBuilder implements
 		fullPassengerInfo1.setSubClsCd("leisy");
 		BeanUtils.copyProperties(fullPassengerInfo, fullPassengerInfo1);
 		BeanUtils.copyProperties(fullPassengerInfo1, fullPassengerInfo);
-		System.out.print(fullPassengerInfo.getOprStatCd() + ","
+		
+		log.debug(fullPassengerInfo.getOprStatCd() + ","
 				+ fullPassengerInfo1.getOprStatCd());
-		System.out.print(fullPassengerInfo.getSubClsCd() + ","
+		log.debug(fullPassengerInfo.getSubClsCd() + ","
 				+ fullPassengerInfo1.getSubClsCd());
 	}
 
 	@Override
 	public List<FullPassengerInfo> doit(PnrSegInfo pnrSegInfo) {
-		Map<String, List<FullPassengerInfo>> fullPasMap = new HashMap<>();
+//		Map<String, List<FullPassengerInfo>> fullPasMap = new HashMap<>();
 
 		if (pnrSegInfo == null || pnrSegInfo.getHeader() == null) {
 			return null;
@@ -44,6 +45,9 @@ public class FullPsgInfoBuilder implements
 
 		for (FullPsgInfo fullPsgInfo : pnrSegInfo.getPsgInfos()) {
 			fullPassengerInfos.addAll(create(fullPsgInfo));
+		}
+		if(fullPassengerInfos==null||fullPassengerInfos.size()==0){
+			log.warn("warning fullpassengerInfo size is 0");
 		}
 		return fullPassengerInfos;
 	}
