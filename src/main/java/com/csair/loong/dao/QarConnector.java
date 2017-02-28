@@ -42,6 +42,7 @@ public class QarConnector {
 
 		String sql = "select " + selectPart
 				+ " from qardata where date = ? and plane_no = ? and id = ? "+wherePart;
+		
 		if (param.getLimit() != 0) {
 			sql = sql + " limit " + param.getLimit();
 		}
@@ -260,6 +261,7 @@ public class QarConnector {
 	}
 
 	public static void main(String args[]) {
+		
 		String version = System.getProperty("java.version");
 		System.out.println(version);
 		String planeNo = "a";

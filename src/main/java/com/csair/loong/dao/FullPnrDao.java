@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -29,21 +28,6 @@ public class FullPnrDao extends AbstractHbaseDao<FullPassengerInfo> {
 		String sql = insert_sql + " (" + fullPsgInfo.toSql() + ")";
 
 		return insert(sql);
-	}
-
-	public boolean insertStr(List<String> fullPsgStrs) {
-
-		List<String> sqls = new ArrayList<String>();
-		for (String str : fullPsgStrs) {
-			if (StringUtils.isNotBlank(str)) {
-				String sql = insert_sql + " (" + str + ")";
-				sqls.add(sql);
-			}
-		}
-		int[] size = batchInsert(sqls);
-		log.info("插入记录数：" + size.toString());
-		return true;
-
 	}
 
 	public boolean insert(List<FullPassengerInfo> fullPsgInfos) {
@@ -69,11 +53,15 @@ public class FullPnrDao extends AbstractHbaseDao<FullPassengerInfo> {
 	}
 
 	@Override
-	FullPassengerInfo toObject(ResultSet rs) {
+	public FullPassengerInfo toObject(ResultSet rs) {
 		FullPassengerInfo fpi = new FullPassengerInfo();
 
-		// fpi.set
 		return null;
+	}
+
+	@Override
+	public String getInsertSql() {
+		return this.insert_sql;
 	}
 
 }

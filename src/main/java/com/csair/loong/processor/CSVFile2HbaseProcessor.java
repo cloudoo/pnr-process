@@ -1,4 +1,4 @@
-package com.csair.loong.pnr.processor;
+package com.csair.loong.processor;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -16,16 +16,19 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.csair.loong.dao.AbstractHbaseDao;
 import com.csair.loong.dao.FullPnrDao;
 import com.csair.loong.domain.FullPassengerInfo;
+import com.csair.loong.pnr.processor.Processor;
 
-public class FullPsgInfoFile2HbaseProcessor implements Processor<Boolean, File> {
+public class CSVFile2HbaseProcessor implements Processor<Boolean, File> {
+	
 	private static final Logger log = LoggerFactory
-			.getLogger(FullPsgInfoFile2HbaseProcessor.class);
+			.getLogger(CSVFile2HbaseProcessor.class);
 
-	FullPnrDao dao;
+	private AbstractHbaseDao dao;
 
-	public FullPsgInfoFile2HbaseProcessor(FullPnrDao dao) {
+	public CSVFile2HbaseProcessor(AbstractHbaseDao dao) {
 		this.dao = dao;
 	}
 
@@ -48,11 +51,11 @@ public class FullPsgInfoFile2HbaseProcessor implements Processor<Boolean, File> 
 				}
 			}
 		} catch (FileNotFoundException e) {
-			log.error("FullPsgInfoFile2HbaseProcessor:file readed error["
+			log.error("CSVFile2HbaseProcessor readed error["
 					+ e.getLocalizedMessage() + "]");
 			e.printStackTrace();
 		} catch (IOException e) {
-			log.error("FullPsgInfoFile2HbaseProcessor:data readed error["
+			log.error("CSVFile2HbaseProcessor readed error["
 					+ e.getLocalizedMessage() + "]");
 			e.printStackTrace();
 		}
@@ -61,8 +64,32 @@ public class FullPsgInfoFile2HbaseProcessor implements Processor<Boolean, File> 
 			
 			
 			List<String> tempList = null;
-			int fromIndex=0,toIndex=10000;
-			while(toIndex<=datas.size()){
+			
+			int fromIndex=0,toIndex=1,step = 10000;
+			
+//			if(step<datas.size()){
+//				toIndex = step;
+//			}
+			
+			
+			
+			for(;toIndex<datas.size();toIndex+=step){
+				
+			
+				tempList = datas.subList(fromIndex, toIndex);
+				log.info("准备批量插入："+tempList.size());
+				
+				if(dao.insertStr(tempList)){
+					log.info("successed!:insert from"+fromIndex+" to"+toIndex+"");
+				}else{
+					log.info("falied!:insert from"+fromIndex+" to"+toIndex+"");
+				}
+				fromIndex = toIndex;
+			}
+			
+			if(fromIndex<datas.size()){
+				
+				toIndex = datas.size();
 				tempList = datas.subList(fromIndex, toIndex);
 				log.info("准备批量插入："+tempList.size());
 				if(dao.insertStr(tempList)){
@@ -70,15 +97,33 @@ public class FullPsgInfoFile2HbaseProcessor implements Processor<Boolean, File> 
 				}else{
 					log.info("falied!:insert from"+fromIndex+" to"+toIndex+"");
 				}
-				fromIndex = toIndex;
-				if((toIndex+10000)<datas.size()){
-					toIndex = toIndex+10000;
+			}
+			
+			
+			
+			while(toIndex<datas.size()){
+				//FIXME:如果小于10000行则有问题
+				tempList = datas.subList(fromIndex, toIndex);
+				
+				log.info("准备批量插入："+tempList.size());
+				
+				if(dao.insertStr(tempList)){
+					log.info("successed!:insert from"+fromIndex+" to"+toIndex+"");
 				}else{
-					toIndex = datas.size();
+					log.info("falied!:insert from"+fromIndex+" to"+toIndex+"");
 				}
+				
+				fromIndex = toIndex;
+				if((toIndex+step)<datas.size()){
+					toIndex = toIndex+step;
+				}else{
+					toIndex=datas.size();
+				}
+				
 			}
 		   
-			 
+			dao.close();
+			
 			return true;
 		
 		}
@@ -92,11 +137,16 @@ public class FullPsgInfoFile2HbaseProcessor implements Processor<Boolean, File> 
 	}
 	
 	public static void main(String[] args){
-		FullPsgInfoFile2HbaseProcessor pp = new FullPsgInfoFile2HbaseProcessor(new FullPnrDao());
-		
-		File file = new File("S:\\temp1\\CZ_DFP_20161008_1.txt.gz.processor");
+//		CSVFile2HbaseProcessor pp = new CSVFile2HbaseProcessor(new FullPnrDao());
 //		
-		pp.doit(file);
+//		File file = new File("S:\\temp1\\CZ_DFP_20161008_1.txt.gz.processor");
+//		
+//		pp.doit(file);
+		
+		String test = "a,b,w,d,d,e,re,e,r,e,re,er,er,e,r,er";
+		
+		 
+		
 //		String str = "ML7SKD,20141031,,,,1,CHIA/LILENG,,,,";
 //		System.out.println(pp.strAddQuotes(str));
 		

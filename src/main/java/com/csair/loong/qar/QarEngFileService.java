@@ -1,25 +1,28 @@
-package com.csair.loong.pnr;
+package com.csair.loong.qar;
 
 import java.io.File;
-import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.csair.loong.dao.FullPnrDao;
-import com.csair.loong.domain.FullPassengerInfo;
-import com.csair.loong.pnr.processor.FullPsgInfo2FileProcessor;
-import com.csair.loong.pnr.processor.FullPsgInfoBuilder;
-import com.csair.loong.pnr.processor.PnrSegInfoBuilder;
+import com.csair.loong.pnr.FullPsgService;
 import com.csair.loong.pnr.processor.ProcessorChain;
 import com.csair.loong.processor.CSVFile2HbaseProcessor;
+import com.csair.loong.qar.dao.QarEngDao;
+import com.csair.loong.qar.processor.QarCSVFile2HbaseProcessor;
 
-public class FullPsgService {
+public class QarEngFileService {
+	private static final Logger log = LoggerFactory
+			.getLogger(QarEngFileService.class);
 
 	private ProcessorChain chain;
 
-	public FullPsgService() {
+	public QarEngFileService() {
 
 		chain = new ProcessorChain()
-				.addProcessor(new CSVFile2HbaseProcessor(
-						new FullPnrDao()));
+				.addProcessor(new QarCSVFile2HbaseProcessor(
+						new QarEngDao()));
 
 	}
 
@@ -33,7 +36,7 @@ public class FullPsgService {
 		
 		 String fileName=file.getName();
 	     String prefix=fileName.substring(fileName.lastIndexOf(".")+1);
-	     if(!prefix.equalsIgnoreCase("process")){
+	     if(!prefix.equalsIgnoreCase("ENG")){
 	    	 
 	    	 return false;
 	    	 
@@ -45,8 +48,8 @@ public class FullPsgService {
 	}
 
 	public static void main(String[] args) {
-		FullPsgService fps = new FullPsgService();
-	    String fileDir = "S:\\pnrFullPsgOrgFile";
+		QarEngFileService fps = new QarEngFileService();
+	    String fileDir = "S:\\qar\\process";
 		if(args.length>1){
 			fileDir = args[0];
 		}
@@ -54,9 +57,9 @@ public class FullPsgService {
 		if(files.isDirectory()){
 			File[] tFiles = files.listFiles();
 			for(File file:tFiles){
+				log.info(file.getName());
 				fps.save(file);
 			}
 		}
 	}
-
 }
