@@ -10,11 +10,12 @@ import org.apache.commons.lang3.time.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.csair.datatrs.common.FieldSegment;
+import com.csair.bi.commons.FieldSegment;
 
 
 
-public class PnrDivProcessor implements Processor<List<File>,String> {
+
+public class PnrDivProcessor implements Processor<String,List<File>> {
     protected static final Logger log = LoggerFactory.getLogger(PnrDivProcessor.class);
     
 //    private String fileName;
@@ -168,7 +169,7 @@ public class PnrDivProcessor implements Processor<List<File>,String> {
 //        String endDt = test[1].substring(16);
 //        System.out.println(test.length);
         String fileName = "D:\\03_工作文件\\02_研究院\\01_项目\\05_PNR数据\\02_数据\\2016\\org\\CZ_DFP_20161206_1.txt";
-        Processor<List<File>,String> testP = new PnrDivProcessor();
+        Processor<String,List<File>> testP = new PnrDivProcessor();
         List<File> fileList = testP.doit(fileName);
 
     }

@@ -18,7 +18,7 @@ public class SsimFileReader extends FileReader{
     }
 
     @Override
-    public void process(String line) {
+    public void process(int index,String line) {
          txtFormaterService.process(line);
     }
 

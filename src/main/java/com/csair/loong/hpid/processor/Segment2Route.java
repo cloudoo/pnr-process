@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import com.csair.loong.hpid.domain.FltRoute;
 import com.csair.loong.pnr.processor.Processor;
 
-public class Segment2Route implements Processor<FltRoute, List<FltRoute>> {
+public class Segment2Route implements Processor<List<FltRoute>,FltRoute> {
 
 	private static final Logger log = LoggerFactory
 			.getLogger(Segment2Route.class);

@@ -16,7 +16,7 @@ import java.util.zip.ZipInputStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class UnGzProcessor implements Processor<List<File>, String> {
+public class UnGzProcessor implements Processor<String,List<File>> {
 	protected static final Logger log = LoggerFactory.getLogger(UnGzProcessor.class);
 	private static final int buffer = 2048;
 	

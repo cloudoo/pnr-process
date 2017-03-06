@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<!-- Send debug messages to System.out -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- By default, encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder -->
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+	<appender name="FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<Encoding>UTF-8</Encoding>
+		<file>logs/qy.log</file>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>%d{yyyy-MM-dd_HH:mm:ss.SSS} [%thread] %-5level %logger{36} -
+				%msg%n</Pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<fileNamePattern>logs/qy.log.%i</fileNamePattern>
+			<minIndex>1</minIndex>
+			<maxIndex>20</maxIndex>
+		</rollingPolicy>
+
+		<triggeringPolicy
+			class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<maxFileSize>50MB</maxFileSize>
+		</triggeringPolicy>
+
+	</appender>
+
+	<appender name="HESSIAN"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/hessian-check.log</file>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>%d{yyyy-MM-dd_HH:mm:ss.SSS} [%thread] %-5level %logger{36} -
+				%msg%n</Pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<fileNamePattern>logs/hessian.log.%i</fileNamePattern>
+			<minIndex>1</minIndex>
+			<maxIndex>20</maxIndex>
+		</rollingPolicy>
+
+		<triggeringPolicy
+			class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<maxFileSize>50MB</maxFileSize>
+		</triggeringPolicy>
+	</appender>
+
+	<logger name="com.alibaba.dubbo" level="warn" additivity="false">
+		<appender-ref ref="STDOUT"></appender-ref>
+	</logger>
+	<logger name="org" level="info" additivity="false">
+		<appender-ref ref="STDOUT"></appender-ref>
+	</logger>
+	<logger name="com" level="info" additivity="false">
+		<appender-ref ref="STDOUT"></appender-ref>
+	</logger>
+	<logger name="net" level="info" additivity="false">
+		<appender-ref ref="STDOUT"></appender-ref>
+	</logger>
+	<logger name="com.csair.internal.loadbalance.HealthChecker"
+		level="INFO" additivity="false">
+		<appender-ref ref="HESSIAN" />
+	</logger>
+
+	<appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">  
+        <discardingThreshold>0</discardingThreshold>  
+          <queueSize>1000</queueSize>  
+          <appender-ref ref="STDOUT" />  
+    </appender>
+	<root level="INFO">
+		<appender-ref ref="ASYNC" />
+	</root>
+</configuration>

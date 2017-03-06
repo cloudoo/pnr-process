@@ -17,6 +17,7 @@ public abstract class FileReader implements  Reader{
     private static final Logger log = LoggerFactory.getLogger(FileReader.class);
     protected File file;
 
+    private String encode = "GBK";
     public FileReader(String fileName) {
         this.file = new File(fileName);
     }
@@ -24,8 +25,11 @@ public abstract class FileReader implements  Reader{
     public FileReader(File file) {
         this.file = file;
     }
+    public void setEncode(String encode){
+    	this.encode = encode;
+    }
 
-    public abstract void process(String line);
+    public abstract void process(int index,String line);
 
     public void reg() {
 
@@ -33,24 +37,26 @@ public abstract class FileReader implements  Reader{
         BufferedWriter wr = null;
         String line = null;
         List<Object> objects = null;
-
+        
+        int index = 0;
 
         try {
 
-            br = new BufferedReader(new InputStreamReader(new FileInputStream(file), "GBK"));//默认应该是GBK格式
+            br = new BufferedReader(new InputStreamReader(new FileInputStream(file), encode));//默认应该是GBK格式
             wr = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File(file.getAbsolutePath() + ".error")), "UTF-8"));
 
             while ((line = br.readLine()) != null) {
                 //解析为响应的类
                 try {
                     //处理每行记录
-                    process(line);
+                    process(index,line);
                     
                 } catch (Exception e) {
-                    log.error("[FileReader]解析异常！" + line + "\n\r" + e.getStackTrace());
+                    log.error("[FileReader]解析异常！ index:"+index+"line:" + line + "\n\r" + e.getStackTrace());
                     wr.write("fail," + line + "\b\n");
                 }
                 
+                index ++;
             }
 
         } catch (FileNotFoundException e) {
@@ -75,7 +81,7 @@ public abstract class FileReader implements  Reader{
             }
         }
         //可能需要关闭资源
-
+        
     }
 
 }

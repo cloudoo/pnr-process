@@ -1,7 +1,8 @@
 package com.csair.loong.pnr.processor;
 
-import com.csair.datatrs.common.FieldSegment;
+import com.csair.bi.commons.FieldSegment;
 import com.csair.loong.domain.PsgInfo;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.slf4j.Logger;

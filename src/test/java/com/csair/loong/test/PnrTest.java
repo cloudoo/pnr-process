@@ -2,7 +2,6 @@ package com.csair.loong.test;
 
 import java.io.File;
 
-import com.csair.datatrs.common.Processor;
 import com.csair.loong.pnr.PnrFile2PnrFullPsgTransfer;
 import com.csair.loong.pnr.processor.PnrSaveDbProcessor;
 

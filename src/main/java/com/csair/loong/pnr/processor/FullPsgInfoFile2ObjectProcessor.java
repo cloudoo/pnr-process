@@ -9,7 +9,7 @@ import com.csair.loong.domain.PnrSegInfo;
 import com.csair.loong.service.Writer;
 
 public class FullPsgInfoFile2ObjectProcessor implements
-		Processor<List<FullPassengerInfo>, String> {
+		Processor<String,List<FullPassengerInfo>> {
 
 	@Override
 	public List<FullPassengerInfo> doit(String dir) {

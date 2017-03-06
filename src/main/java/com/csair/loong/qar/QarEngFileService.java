@@ -49,7 +49,7 @@ public class QarEngFileService {
 
 	public static void main(String[] args) {
 		QarEngFileService fps = new QarEngFileService();
-	    String fileDir = "S:\\qar\\process";
+	    String fileDir = "S:\\qar\\process\\process\\";
 		if(args.length>1){
 			fileDir = args[0];
 		}

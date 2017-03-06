@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by cloudoo on 2016/9/18.
  */
-public class PnrSegInfoBuilder implements Processor<PnrSegInfo,List<PnrInfo>> {
+public class PnrSegInfoBuilder implements Processor<List<PnrInfo>,PnrSegInfo> {
 
 
     private  PnrSegInfo pnrSegInfo;

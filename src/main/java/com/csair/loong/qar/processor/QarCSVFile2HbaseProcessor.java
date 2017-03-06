@@ -20,7 +20,6 @@ public class QarCSVFile2HbaseProcessor extends CSVFile2HbaseProcessor{
 		log.info(str);
 		
 		domain.initByStrings(str);
-//		str = str.replaceAll(",", "','");
 		
 		return domain.toSql();
 	}

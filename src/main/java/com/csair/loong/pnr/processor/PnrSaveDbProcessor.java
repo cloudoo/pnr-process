@@ -6,19 +6,18 @@ import java.util.concurrent.Executors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.csair.datatrs.common.Processor;
 import com.csair.loong.commons.cache.RedisClient;
-
-public class PnrSaveDbProcessor implements Processor<Boolean>{
+@Deprecated
+public class PnrSaveDbProcessor implements Processor<String,Boolean>{
     private RedisClient redisClient = RedisClient.getInstance();
     ExecutorService executorService = Executors.newSingleThreadExecutor();
     
     protected static final Logger log = LoggerFactory.getLogger(PnrSaveDbProcessor.class);
 
     @Override
-    public Boolean doit() {
+    public Boolean doit(String pnrKey) {
         
-        String value = redisClient.pull("pnr_key");
+        String value = redisClient.pull(pnrKey);
         
         executorService.submit(new Save2Db(value));
         return false;
@@ -43,6 +42,8 @@ public class PnrSaveDbProcessor implements Processor<Boolean>{
      
      public static void main(String[] args){
          Processor testP = new PnrSaveDbProcessor();
-         testP.doit();
+//         testP.doit();
      }
+
+ 
 }

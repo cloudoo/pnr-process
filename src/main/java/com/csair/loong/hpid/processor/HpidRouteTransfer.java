@@ -51,7 +51,7 @@ public class HpidRouteTransfer extends FileReader {
 	}
 
 	@Override
-	public void process(String line) {
+	public void process(int index,String line) {
 
 		if (line.indexOf("DEPDATE") < 0) {
 			String[] lines = line.split("\t");

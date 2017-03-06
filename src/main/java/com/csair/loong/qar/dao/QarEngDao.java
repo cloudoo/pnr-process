@@ -22,6 +22,13 @@ public class QarEngDao extends AbstractHbaseDao<QarEngDomain> {
 	private JdbcTemplate jdbcTemplate;
 	
 	
+	public QarEngDao(){
+		
+	}
+	public QarEngDao(String jdbcUrl,String driverClass){
+			this.JDBC_DRIVER_CLASS = driverClass;
+			this.JDBC_URL = jdbcUrl;
+	}
 	/**
 	 * 
 	 * 	sql = "create table if not EXISTS qar.qar_eng_file_y"
@@ -36,6 +43,7 @@ public class QarEngDao extends AbstractHbaseDao<QarEngDomain> {
 	public String insert_sql = "UPSERT INTO qar.qar_eng_file_y("
 			+ "id,tailNr,fltDt,engFileName,Time,IAS,CITY_FROM_R,CITY_TO_R,DATE_R,EGT1,EGT2,EPR_ENG1_ACTUA,EPR_ENG2_ACTUA,EPR_ENG1,EPR_ENG2,FF1,FF2,FLIGHT_PHASE,FLIGHT_NO1,FLIGHT_NO2,GS,HEAD,TAS,MACH,VRTG,LATG,LONG,LONPC,LATPC,RALTC,ALT_STDC,FQTY_TON,TAT,GW,HEAD_TRUE,DRIFT,ROLL,VREF_1,PITCH_1,FLT_PATH_ANGL,WIN_SPD,WIN_DIR,APU_ON,V2,V1,VR,VREF_2,PITCH_2,AC_TYPE,MACH_BUFF,PITCH_TRM,PITCH_RATE,HEAD_LIN,FLAPC,CTL_CL_FC_A_L,CTL_CL_FC_B_L,GLIDE_DEVC,LOC_DEVC,LDG_SELDW,AP_EGD1,AP_EGD2,AP_OFF,ATS_EGD,IVV,TLA1,TLA2,GPWS_MODE,MAS_CAU,IASC,GSC,EGT1C,EGT2C,OIP1,OIP2,AIL_QAD_POS_L,OIL_PRS1,OIL_PRS2,RAW_OIP1_A,RAW_OIP1_B,RAW_OIP2_A,RAW_OIP2_B,LDGC,LDGL,LDGNOS,LDGR,N11,N12,VIB_N11,VIB_N12,N21,N22,VIB_N21,VIB_N22,N31,N32,VIB_N31,VIB_N32,OIL_QTY1,OIL_QTY2,OIL_TMP1,OIL_TMP2,SATR,DFC,ALT_STD_ISIS"
 			+ ") values ";
+	
 
 	public void setDataSource(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);

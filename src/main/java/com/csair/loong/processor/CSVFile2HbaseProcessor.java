@@ -21,7 +21,7 @@ import com.csair.loong.dao.FullPnrDao;
 import com.csair.loong.domain.FullPassengerInfo;
 import com.csair.loong.pnr.processor.Processor;
 
-public class CSVFile2HbaseProcessor implements Processor<Boolean, File> {
+public class CSVFile2HbaseProcessor implements Processor<File,Boolean> {
 	
 	private static final Logger log = LoggerFactory
 			.getLogger(CSVFile2HbaseProcessor.class);
@@ -47,7 +47,13 @@ public class CSVFile2HbaseProcessor implements Processor<Boolean, File> {
 			String line = null;
 			while((line = br.readLine())!=null){
 				if(StringUtils.isNotBlank(line)){
-					datas.add(strAddQuotes(line));
+					String someStr = "";
+					try{
+						someStr = strAddQuotes(line);
+					}catch(Exception e){
+						log.debug("["+file.getName()+"]["+line+"]");
+					}
+					datas.add(someStr);
 				}
 			}
 		} catch (FileNotFoundException e) {
@@ -66,12 +72,6 @@ public class CSVFile2HbaseProcessor implements Processor<Boolean, File> {
 			List<String> tempList = null;
 			
 			int fromIndex=0,toIndex=1,step = 10000;
-			
-//			if(step<datas.size()){
-//				toIndex = step;
-//			}
-			
-			
 			
 			for(;toIndex<datas.size();toIndex+=step){
 				
@@ -101,26 +101,26 @@ public class CSVFile2HbaseProcessor implements Processor<Boolean, File> {
 			
 			
 			
-			while(toIndex<datas.size()){
-				//FIXME:如果小于10000行则有问题
-				tempList = datas.subList(fromIndex, toIndex);
-				
-				log.info("准备批量插入："+tempList.size());
-				
-				if(dao.insertStr(tempList)){
-					log.info("successed!:insert from"+fromIndex+" to"+toIndex+"");
-				}else{
-					log.info("falied!:insert from"+fromIndex+" to"+toIndex+"");
-				}
-				
-				fromIndex = toIndex;
-				if((toIndex+step)<datas.size()){
-					toIndex = toIndex+step;
-				}else{
-					toIndex=datas.size();
-				}
-				
-			}
+//			while(toIndex<datas.size()){
+//				//FIXME:如果小于10000行则有问题
+//				tempList = datas.subList(fromIndex, toIndex);
+//				
+//				log.info("准备批量插入："+tempList.size());
+//				
+//				if(dao.insertStr(tempList)){
+//					log.info("successed!:insert from"+fromIndex+" to"+toIndex+"");
+//				}else{
+//					log.info("falied!:insert from"+fromIndex+" to"+toIndex+"");
+//				}
+//				
+//				fromIndex = toIndex;
+//				if((toIndex+step)<datas.size()){
+//					toIndex = toIndex+step;
+//				}else{
+//					toIndex=datas.size();
+//				}
+//				
+//			}
 		   
 			dao.close();
 			

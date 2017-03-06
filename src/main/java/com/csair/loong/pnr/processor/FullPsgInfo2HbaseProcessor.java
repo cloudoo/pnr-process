@@ -12,7 +12,7 @@ import com.csair.loong.dao.FullPnrDao;
 import com.csair.loong.domain.FullPassengerInfo;
 
 public class FullPsgInfo2HbaseProcessor implements
-		Processor<String, List<FullPassengerInfo>> {
+		Processor< List<FullPassengerInfo>,String> {
 	private static final Logger log = LoggerFactory
 			.getLogger(FullPsgInfo2HbaseProcessor.class);
 

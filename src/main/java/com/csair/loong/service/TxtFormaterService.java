@@ -10,7 +10,7 @@ import java.util.List;
  */
 public abstract class TxtFormaterService<T> {
 
-    private Processor<T,List<T>> processor;
+    private Processor<List<T>,T> processor;
     private ObjectFactory<T> objectFactory;
     private List<T> objects;
 

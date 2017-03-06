@@ -52,7 +52,7 @@ public class PnrFile2PnrFullPsgTransfer extends FileReader {
 	}
 
 	@Override
-	public void process(String line) {
+	public void process(int index,String line) {
 		PnrInfoFactory pnrInfoFactory = PnrInfoFactory.getInstance();
 		PnrInfo pnrInfo = pnrInfoFactory.doit(line);
 

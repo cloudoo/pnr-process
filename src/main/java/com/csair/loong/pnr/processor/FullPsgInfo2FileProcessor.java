@@ -6,8 +6,9 @@ import com.csair.loong.domain.FullPassengerInfo;
 import com.csair.loong.domain.PnrSegInfo;
 import com.csair.loong.service.Writer;
 
+
 public class FullPsgInfo2FileProcessor implements
-		Processor<Writer, List<FullPassengerInfo>> {
+		Processor<List<FullPassengerInfo>,Writer> {
 
 	private Writer writer;
 

@@ -16,7 +16,7 @@ import java.util.Map;
  * Created by cloudoo on 2016/9/19.
  */
 public class FullPsgInfoBuilder implements
-		Processor<List<FullPassengerInfo>, PnrSegInfo> {
+		Processor< PnrSegInfo,List<FullPassengerInfo>> {
 	private static final Logger log = LoggerFactory
 			.getLogger(FullPsgInfoBuilder.class);
 

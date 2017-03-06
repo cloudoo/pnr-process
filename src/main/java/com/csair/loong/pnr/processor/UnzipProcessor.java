@@ -13,7 +13,7 @@ import java.util.zip.ZipInputStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class UnzipProcessor implements Processor<List<File>, String> {
+public class UnzipProcessor implements Processor<String,List<File>> {
 	protected static final Logger log = LoggerFactory.getLogger(UnzipProcessor.class);
 	private static final int buffer = 2048;
 	

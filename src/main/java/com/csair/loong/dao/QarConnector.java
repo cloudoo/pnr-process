@@ -148,7 +148,7 @@ public class QarConnector {
 			
 			conn = DriverManager.getConnection(
 					"jdbc:phoenix:10.95.68.71:2181:/hbase", "", "");
-			String sql = "select date,plane_no,id from qardata where date between   '20150402' and '20150407' group by date,plane_no,id";
+			String sql = "select date,tailNr,id from qardata where date between   '20150402' and '20150407' group by date,tailNr,id";
 			ps = conn.prepareStatement(sql);
 
 			rs = ps.executeQuery();
@@ -225,7 +225,7 @@ public class QarConnector {
 
 		try {
 			conn = DriverManager.getConnection(jdbcString, "", "");
-
+			
 			ps = conn.prepareStatement(sql);
 			for(int i = 0;i<params.length;i++){
 				ps.setObject(i+1, params[i]);

@@ -6,7 +6,8 @@ import com.csair.loong.pnr.processor.Processor;
 /**
  * Created by cloudoo on 2016/9/14.
  */
-public class PnrInfoFactory implements Processor<PnrInfo,String>{
+public class PnrInfoFactory implements Processor<String,PnrInfo>{
+	
 	private static PnrInfoFactory instance;
 
 	private PnrInfoFactory() {
