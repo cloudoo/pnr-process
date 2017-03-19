@@ -10,11 +10,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import com.csair.loong.dao.AbstractHbaseDao;
+import com.csair.loong.dao.AbstractHBaseJdbcDAO;
 import com.csair.loong.domain.FullPassengerInfo;
 import com.csair.loong.qar.domain.QarEngDomain;
 
-public class QarEngDao extends AbstractHbaseDao<QarEngDomain> {
+public class QarEngDao extends AbstractHBaseJdbcDAO<QarEngDomain> {
 
 	
 	public static final Logger log = LoggerFactory.getLogger(QarEngDao.class);

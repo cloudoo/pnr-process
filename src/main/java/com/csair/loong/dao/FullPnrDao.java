@@ -12,7 +12,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.csair.loong.domain.FullPassengerInfo;
 
-public class FullPnrDao extends AbstractHbaseDao<FullPassengerInfo> {
+public class FullPnrDao extends AbstractHBaseJdbcDAO<FullPassengerInfo> {
 	private static final Logger log = LoggerFactory.getLogger(FullPnrDao.class);
 	private JdbcTemplate jdbcTemplate;
 	private String insert_sql = "UPSERT INTO fullpnr.full_pnr_passenger_info("

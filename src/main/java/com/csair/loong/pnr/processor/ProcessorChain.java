@@ -13,6 +13,10 @@ public class ProcessorChain  implements Processor{
 		processorList.add(processor);
 		return this;
 	}
+	public ProcessorChain removeProcessor(Processor processor){
+		processorList.remove(processor);
+		return this;
+	}
 
 	@Override
 	public Object doit(Object something) {

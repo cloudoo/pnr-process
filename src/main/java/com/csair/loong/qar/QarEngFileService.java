@@ -7,23 +7,26 @@ import org.slf4j.LoggerFactory;
 
 import com.csair.loong.dao.FullPnrDao;
 import com.csair.loong.pnr.FullPsgService;
+import com.csair.loong.pnr.processor.Processor;
 import com.csair.loong.pnr.processor.ProcessorChain;
 import com.csair.loong.processor.CSVFile2HbaseProcessor;
 import com.csair.loong.qar.dao.QarEngDao;
-import com.csair.loong.qar.processor.QarCSVFile2HbaseProcessor;
+import com.csair.loong.qar.processor.CSVFile2PhoneixHbaseProcessor;
 
 public class QarEngFileService {
 	private static final Logger log = LoggerFactory
 			.getLogger(QarEngFileService.class);
 
-	private ProcessorChain chain;
+	private ProcessorChain chain = new ProcessorChain();
 
 	public QarEngFileService() {
-
-		chain = new ProcessorChain()
-				.addProcessor(new QarCSVFile2HbaseProcessor(
-						new QarEngDao()));
-
+		
+	}
+	public void addProcessor(Processor processor){
+		 chain.addProcessor(processor);
+	}
+	public void removeProcessor(Processor processor){
+		 chain.removeProcessor(processor);
 	}
 
 	/**
@@ -48,8 +51,11 @@ public class QarEngFileService {
 	}
 
 	public static void main(String[] args) {
+		
 		QarEngFileService fps = new QarEngFileService();
-	    String fileDir = "S:\\qar\\process\\process\\";
+		fps.addProcessor(new CSVFile2PhoneixHbaseProcessor(new QarEngDao()));
+		
+	    String fileDir = "S:\\qar\\process\\";
 		if(args.length>1){
 			fileDir = args[0];
 		}

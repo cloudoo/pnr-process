@@ -16,7 +16,7 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.csair.loong.dao.AbstractHbaseDao;
+import com.csair.loong.dao.AbstractHBaseJdbcDAO;
 import com.csair.loong.dao.FullPnrDao;
 import com.csair.loong.domain.FullPassengerInfo;
 import com.csair.loong.pnr.processor.Processor;
@@ -25,15 +25,17 @@ public class CSVFile2HbaseProcessor implements Processor<File,Boolean> {
 	
 	private static final Logger log = LoggerFactory
 			.getLogger(CSVFile2HbaseProcessor.class);
+	
+	private int step = 10000;
+	
+	private AbstractHBaseJdbcDAO dao;
 
-	private AbstractHbaseDao dao;
-
-	public CSVFile2HbaseProcessor(AbstractHbaseDao dao) {
-		this.dao = dao;
+	public void setStep(int step){
+		this.step = step;
 	}
-
-	public void init() {
-		dao.init();
+	
+	public CSVFile2HbaseProcessor(AbstractHBaseJdbcDAO dao) {
+		this.dao = dao;
 	}
 
 	@Override
@@ -71,9 +73,9 @@ public class CSVFile2HbaseProcessor implements Processor<File,Boolean> {
 			
 			List<String> tempList = null;
 			
-			int fromIndex=0,toIndex=1,step = 10000;
+			int fromIndex=0,toIndex=1,tempStemp = step;
 			
-			for(;toIndex<datas.size();toIndex+=step){
+			for(;toIndex<datas.size();toIndex+=tempStemp){
 				
 			
 				tempList = datas.subList(fromIndex, toIndex);

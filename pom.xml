@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.csair.loong</groupId>
 	<artifactId>pnr-process</artifactId>
-	<version>0.0.5.0-SNAPSHOT</version>
+	<version>0.1.0.1-SNAPSHOT</version>
 
 
 	<properties>
@@ -65,8 +65,18 @@
 			<version>4.6.0-HBase-0.98</version>
 		</dependency>
 
-	</dependencies>
+ 	<!-- <dependency>
+			<groupId>org.apache.hbase</groupId>
+			<artifactId>hbase-client</artifactId>
+			<version>0.98.6-cdh5.3.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-hdfs</artifactId>
+			<version>2.5.0-cdh5.3.3</version>
+		</dependency>   -->
 
+	</dependencies>
 
 	<repositories>
 		<repository>
@@ -74,6 +84,16 @@
 			<name>Java OSS Tech Maven Proxy</name>
 			<url>http://10.92.8.15/nexus/content/groups/public</url>
 		</repository>
+	<!--   <repository>
+			<id>maven-hadoop</id>
+			<name>Hadoop Releases</name>
+			<url>https://repository.cloudera.com/content/repositories/releases/</url>
+		</repository>
+		<repository>
+			<id>cloudera-repos</id>
+			<name>Cloudera Repos</name>
+			<url>https://repository.cloudera.com/artifactory/cloudera-repos/</url>
+		</repository>   -->
 	</repositories>
 
 

@@ -8,15 +8,15 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public abstract class AbstractHbaseDao<T> {
+public abstract class AbstractHBaseJdbcDAO<T> {
 	
 	private static final Logger log = LoggerFactory
-			.getLogger(AbstractHbaseDao.class);
+			.getLogger(AbstractHBaseJdbcDAO.class);
 	protected Connection conn;
 	
 	protected   String JDBC_DRIVER_CLASS = "org.apache.phoenix.jdbc.PhoenixDriver";
-	// static final String JDBC_URL = "jdbc:phoenix:10.95.68.71:2181:/hbase";
-	protected   String JDBC_URL = "jdbc:phoenix:10.92.1.129:2181:/hbase";
+	// static final String JDBC_URL = "jdbc:phoenix:10.95.68.71:2181:/hbase";10.92.1.129
+	protected   String JDBC_URL = "jdbc:phoenix:10.95.68.71:2181:/hbase";
 	
 	public void init() {
 		if (conn == null) {
@@ -185,8 +185,8 @@ public abstract class AbstractHbaseDao<T> {
 			rs = ps.executeQuery(sql);
 
 			while (rs.next()) {
-				System.out.println("test");
-				System.out.println("1:" + rs.getString(1));
+				log.info("test");
+				log.info("1:" + rs.getString(1));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -275,7 +275,7 @@ public abstract class AbstractHbaseDao<T> {
 
 	public static void main(String[] args) {
 		
-		AbstractHbaseDao dao = new FullPnrDao();
+		AbstractHBaseJdbcDAO dao = new FullPnrDao();
 		// dao.init();
 		// dao.insert("UPSERT INTO leisy values('1','leisy')");
 		// dao.insert("UPSERT INTO MY_TABLE(org_id,entity_id,payload) values('1','2','3') ");
@@ -371,14 +371,17 @@ public abstract class AbstractHbaseDao<T> {
 		
 //		sql = " DROP TABLE IF EXISTS qar.qar_eng_file_y";
 		
-//		sql = "UPSERT INTO qar.qar_eng_file_y(id,tailNr,fltDt,engFileName,Time,IAS,CITY_FROM_R,CITY_TO_R,DATE_R,EGT1,EGT2,EPR_ENG1_ACTUA,EPR_ENG2_ACTUA,EPR_ENG1,EPR_ENG2,FF1,FF2,FLIGHT_PHASE,FLIGHT_NO1,FLIGHT_NO2,GS,HEAD,TAS,MACH,VRTG,LATG,LONG,LONPC,LATPC,RALTC,ALT_STDC,FQTY_TON,TAT,GW,HEAD_TRUE,DRIFT,ROLL,VREF_1,PITCH_1,FLT_PATH_ANGL,WIN_SPD,WIN_DIR,APU_ON,V2,V1,VR,VREF_2,PITCH_2,AC_TYPE,MACH_BUFF,PITCH_TRM,PITCH_RATE,HEAD_LIN,FLAPC,CTL_CL_FC_A_L,CTL_CL_FC_B_L,GLIDE_DEVC,LOC_DEVC,LDG_SELDW,AP_EGD1,AP_EGD2,AP_OFF,ATS_EGD,IVV,TLA1,TLA2,GPWS_MODE,MAS_CAU,IASC,GSC,EGT1C,EGT2C,OIP1,OIP2,AIL_QAD_POS_L,OIL_PRS1,OIL_PRS2,RAW_OIP1_A,RAW_OIP1_B,RAW_OIP2_A,RAW_OIP2_B,LDGC,LDGL,LDGNOS,LDGR,N11,N12,VIB_N11,VIB_N12,N21,N22,VIB_N21,VIB_N22,N31,N32,VIB_N31,VIB_N32,OIL_QTY1,OIL_QTY2,OIL_TMP1,OIL_TMP2,SATR,DFC,ALT_STD_ISIS) values  "
-//				 +"(169311,'B6625','2015-01-15','169311-B-6625-20150115','04:10:54',0,'ZBAA','ZGHA','15-01-15',425.0,443.0,0.0,0.0,0.0,0.0,434.0,464.0,'TAXI OUT','CSN3','14X',22,359.3,0.0,0.0,0.99074996,-0.01075,0.0,116.5993,40.0738,0,-276,0.0,0.0,0,352.79,0.0,0.35,0,-0.35,0.0,0.0,0.0,'CLOSED',159,0,159,0,-0.35,0,0.0,0.0,0.0,-0.7,0,0.0,0.0,0.0,0.0,'DOWN',0,0,'NOT VALID','-',-38,-2.81,-2.81,'NO WARNING','-',0,22,425,443,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,'','GROUND','GROUND','GROUND',21.6,22.4,0.0,0.0,57.8,58.9,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,66,'')";
+		sql = "UPSERT INTO qar.qar_eng_file_y(id,tailNr,fltDt,engFileName,Time,IAS,CITY_FROM_R,CITY_TO_R,DATE_R,EGT1,EGT2,EPR_ENG1_ACTUA,EPR_ENG2_ACTUA,EPR_ENG1,EPR_ENG2,FF1,FF2,FLIGHT_PHASE,FLIGHT_NO1,FLIGHT_NO2,GS,HEAD,TAS,MACH,VRTG,LATG,LONG,LONPC,LATPC,RALTC,ALT_STDC,FQTY_TON,TAT,GW,HEAD_TRUE,DRIFT,ROLL,VREF_1,PITCH_1,FLT_PATH_ANGL,WIN_SPD,WIN_DIR,APU_ON,V2,V1,VR,VREF_2,PITCH_2,AC_TYPE,MACH_BUFF,PITCH_TRM,PITCH_RATE,HEAD_LIN,FLAPC,CTL_CL_FC_A_L,CTL_CL_FC_B_L,GLIDE_DEVC,LOC_DEVC,LDG_SELDW,AP_EGD1,AP_EGD2,AP_OFF,ATS_EGD,IVV,TLA1,TLA2,GPWS_MODE,MAS_CAU,IASC,GSC,EGT1C,EGT2C,OIP1,OIP2,AIL_QAD_POS_L,OIL_PRS1,OIL_PRS2,RAW_OIP1_A,RAW_OIP1_B,RAW_OIP2_A,RAW_OIP2_B,LDGC,LDGL,LDGNOS,LDGR,N11,N12,VIB_N11,VIB_N12,N21,N22,VIB_N21,VIB_N22,N31,N32,VIB_N31,VIB_N32,OIL_QTY1,OIL_QTY2,OIL_TMP1,OIL_TMP2,SATR,DFC,ALT_STD_ISIS) values  "
+				 +"(169311,'B6625','2015-01-15','169311-B-6625-20150115','04:10:54',0,'ZBAA','ZGHA','15-01-15',425.0,443.0,0.0,0.0,0.0,0.0,434.0,464.0,'TAXI OUT','CSN3','14X',22,359.3,0.0,0.0,0.99074996,-0.01075,0.0,116.5993,40.0738,0,-276,0.0,0.0,0,352.79,0.0,0.35,0,-0.35,0.0,0.0,0.0,'CLOSED',159,0,159,0,-0.35,0,0.0,0.0,0.0,-0.7,0,0.0,0.0,0.0,0.0,'DOWN',0,0,'NOT VALID','-',-38,-2.81,-2.81,'NO WARNING','-',0,22,425,443,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,'','GROUND','GROUND','GROUND',21.6,22.4,0.0,0.0,57.8,58.9,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,66,'')";
 //		
-		sql = "select count(*) from qar.qar_eng_file_y";
+//		sql = "UPSERT INTO qar.qar_eng_file_y(id,tailNr,fltDt,engFileName,Time,IAS,CITY_FROM_R,CITY_TO_R,DATE_R,EGT1,EGT2,EPR_ENG1_ACTUA,EPR_ENG2_ACTUA,EPR_ENG1,EPR_ENG2,FF1,FF2,FLIGHT_PHASE,FLIGHT_NO1,FLIGHT_NO2,GS,HEAD,TAS,MACH,VRTG,LATG,LONG,LONPC,LATPC,RALTC,ALT_STDC,FQTY_TON,TAT,GW,HEAD_TRUE,DRIFT,ROLL,VREF_1,PITCH_1,FLT_PATH_ANGL,WIN_SPD,WIN_DIR,APU_ON,V2,V1,VR,VREF_2,PITCH_2,AC_TYPE,MACH_BUFF,PITCH_TRM,PITCH_RATE,HEAD_LIN,FLAPC,CTL_CL_FC_A_L,CTL_CL_FC_B_L,GLIDE_DEVC,LOC_DEVC,LDG_SELDW,AP_EGD1,AP_EGD2,AP_OFF,ATS_EGD,IVV,TLA1,TLA2,GPWS_MODE,MAS_CAU,IASC,GSC,EGT1C,EGT2C,OIP1,OIP2,AIL_QAD_POS_L,OIL_PRS1,OIL_PRS2,RAW_OIP1_A,RAW_OIP1_B,RAW_OIP2_A,RAW_OIP2_B,LDGC,LDGL,LDGNOS,LDGR,N11,N12,VIB_N11,VIB_N12,N21,N22,VIB_N21,VIB_N22,N31,N32,VIB_N31,VIB_N32,OIL_QTY1,OIL_QTY2,OIL_TMP1,OIL_TMP2,SATR,DFC,ALT_STD_ISIS) values  "
+//				+ "('404609','B6219','2015-05-31','404609-B-6219-20150531','02:28:38','0','','','00-00-00','22.00','23.00','','','','','0','0','','','ENG. STOP','','0000','0.0','239.41','0.0','0.0','0.9944999','-0.008 -0.008 -0.012 -0.012','0.004  0.004  0.008  0.004','0.0','0.0','1','1100','0.000','25.25','0','239.41','0.00','0.35','0','-0.35','0.00','0.00','0.00','','0','','0.0','0','-0.35  -0.35  -0.35  -0.35','41.0','0.0','','-1.41   0.00   0.00   0.00','239.41','0.0','','','0.0000','0.0000','DOWN DOWN','NENGAGED','NENGAGED','0.0','NON EGD','0','-0.35','-0.35','0.0','0.0','0','0','22','23','1.0','1','','','','','','','','','GROUND GROUND GROUND GROUND','GROUND GROUND GROUND GROUND','GROUND GROUND GROUND GROUND','0.0','0.0','','','0.0','0.0','','','','','','','19.50','19.25','23','23','','')";
+
+		//		sql = "select count(*) from qar.qar_eng_file_y";
 //		sql = "select count(*) from qar.qar_eng_file_y where tailNr='B6625'";
-				 dao.testQuery(sql);
+//				 dao.testQuery(sql);
 				 
-//		dao.testUpdate(sql);
+		dao.testUpdate(sql);
 
 		dao.close();
 
